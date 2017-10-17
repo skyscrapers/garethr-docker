@@ -18,12 +18,13 @@ class docker::repos {
           $package_key = $docker::package_key
         }
         apt::source { 'docker':
-          location          => $location,
-          release           => $docker::package_release,
-          repos             => $docker::package_repos,
-          key               => $package_key,
-          key_source        => $key_source,
-          required_packages => 'debian-keyring debian-archive-keyring',
+          location => $location,
+          release  => $docker::package_release,
+          repos    => $docker::package_repos,
+          key      => {
+            'id'     => $package_key,
+            'source' => $key_source,
+          },
           include_src       => false,
         }
         $url_split = split($location, '/')
