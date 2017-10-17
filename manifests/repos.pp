@@ -25,7 +25,6 @@ class docker::repos {
             'id'     => $package_key,
             'source' => $key_source,
           },
-          include_src       => false,
         }
         $url_split = split($location, '/')
         $repo_host = $url_split[2]
